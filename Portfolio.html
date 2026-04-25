@@ -1,0 +1,1432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Daniel Ha — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f4f3ee;
+    --bg-2: #ebe9e0;
+    --ink: #1b1d1f;
+    --ink-soft: #4a4d52;
+    --ink-mute: #87898d;
+    --rule: #d9d6c8;
+    --accent: oklch(0.58 0.12 220);
+    --accent-soft: oklch(0.92 0.04 220);
+    --warm: oklch(0.74 0.10 60);
+    --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+    --sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: inherit; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* ---------- Top nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: color-mix(in oklab, var(--bg) 78%, transparent);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px;
+  }
+  .mark {
+    font-family: var(--serif);
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    display: flex; align-items: center; gap: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+  .nav-cta { flex-shrink: 0; }
+  .mark-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+  .mark-portrait {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--bg-2);
+    flex-shrink: 0;
+  }
+  .mark-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .mark-text strong {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .mark-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    margin-top: 3px;
+  }
+  .nav-links {
+    display: flex; gap: 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .nav-links a { text-decoration: none; color: var(--ink-soft); transition: color .15s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    padding: 8px 14px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    transition: background .15s, color .15s;
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--bg); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 72px 32px 80px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-areas:
+      "title title title title title title title sketch sketch sketch sketch sketch"
+      "meta meta meta meta meta meta meta meta meta meta meta meta";
+    column-gap: 32px;
+    row-gap: 56px;
+    align-items: end;
+  }
+  .hero-mark { display: none; }
+  .hero-title { grid-area: title; align-self: end; }
+  .hero-sketch { grid-area: sketch; align-self: end; justify-self: stretch; }
+  .hero-meta { grid-area: meta; }
+  .hero-portrait {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-portrait img {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 22%;
+    border: 1px solid var(--rule);
+    background: var(--bg-2);
+  }
+  .hero-portrait .who {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .hero-portrait .who strong {
+    color: var(--ink);
+    font-weight: 500;
+    display: block;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ""; width: 24px; height: 1px; background: var(--ink-mute);
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(72px, 11vw, 168px);
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 44ch;
+    margin: 0;
+  }
+  .hero-meta {
+    margin: 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 32px;
+    row-gap: 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+  }
+  .hero-meta dt { color: var(--ink-mute); margin-bottom: 6px; }
+  .hero-meta dd { margin: 0; color: var(--ink); font-family: var(--sans); font-size: 14px; text-transform: none; letter-spacing: 0; line-height: 1.45; max-width: 36ch; }
+  .hero-meta dd em { font-family: var(--serif); font-style: italic; font-size: 16px; }
+
+  /* hero sketch — quiet anchor next to the title */
+  .hero-sketch {
+    margin: 0;
+    width: 100%;
+    max-width: 380px;
+    justify-self: end;
+    text-align: center;
+    transform: rotate(2.5deg);
+    transition: transform .35s ease;
+  }
+  .hero-sketch:hover { transform: rotate(0deg); }
+  .hero-sketch img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    box-shadow:
+      0 1px 0 rgba(0,0,0,0.04),
+      0 12px 28px -12px rgba(0,0,0,0.18);
+  }
+  .hero-sketch figcaption {
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-mute);
+  }
+
+  /* ---------- About strip ---------- */
+  .about {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 32px 96px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 56px;
+    border-top: 1px solid var(--rule);
+  }
+  .about-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+  }
+  .about-body {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .about-body .accent { color: var(--accent); font-style: italic; }
+  .about-tags {
+    margin-top: 28px;
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .about-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 6px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    background: var(--bg);
+  }
+
+  /* ---------- Section header ---------- */
+  .section-head {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 24px;
+    border-top: 1px solid var(--rule);
+    padding-top: 28px;
+  }
+  .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+  .section-head h2 em { font-style: italic; color: var(--accent); }
+  .section-head .count {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-mute);
+  }
+
+  /* tighten gap before personal section */
+  .work:has(+ .section-head#personal) { padding-bottom: 32px; }
+
+  /* ---------- Project grid ---------- */
+  .work {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 32px 96px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+  .card {
+    grid-column: span 6;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+    color: inherit;
+    font: inherit;
+    display: flex; flex-direction: column;
+    gap: 16px;
+    transition: transform .25s ease;
+  }
+  .card:hover { transform: translateY(-2px); }
+  .card-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--bg-2);
+    border: 1px solid var(--rule);
+    transition: border-color .2s;
+  }
+  .card:hover .card-media { border-color: var(--ink); }
+  .card-media .placeholder {
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(135deg, transparent 0 18px, rgba(0,0,0,0.025) 18px 19px);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-mute);
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .card-media img.cover {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s ease;
+  }
+  .card-media img.contain {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    padding: 8%;
+  }
+  .card:hover .card-media img.cover { transform: scale(1.025); }
+  .card-media.merch-tile {
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1px;
+  }
+  .card-media.merch-tile .merch-cell {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-2);
+  }
+  .card-media.merch-tile .merch-cell img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .card-media.merch-tile .merch-cell.fit img {
+    object-fit: contain;
+    padding: 8%;
+    background: #6e8aa6;
+  }
+  /* art tile (4-up like merch but with bg) */
+  .card-media.art-tile {
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1px;
+  }
+  .card-media.art-tile .art-cell {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-2);
+  }
+  .card-media.art-tile .art-cell img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  /* film tile is just a covered photo, no special grid — uses .cover */
+  .card-media.film-tile { background: #11141a; }
+
+  /* personal section divider */
+  #personal {
+    margin-top: 48px;
+    border-top: 1px solid var(--rule);
+    padding-top: 56px;
+  }
+  .work.personal { padding-bottom: 64px; }
+  .card-media .badge {
+    position: absolute; top: 14px; left: 14px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--rule);
+  }
+  .card-media .badge.locked { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .card-media .badge.locked::before { content: "● "; color: var(--accent); }
+  .card-media .open {
+    position: absolute; bottom: 14px; right: 14px;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .card:hover .card-media .open {
+    background: var(--ink); color: var(--bg); border-color: var(--ink);
+  }
+  .card-media .open svg { width: 14px; height: 14px; }
+
+  .card-meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-mute);
+  }
+  .card-title {
+    font-family: var(--serif);
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .card-blurb {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 52ch;
+  }
+
+  /* Specific spans for visual rhythm */
+  .card.span-7 { grid-column: span 7; }
+  .card.span-5 { grid-column: span 5; }
+  .card.span-8 { grid-column: span 8; }
+  .card.span-4 { grid-column: span 4; }
+  .card.span-12 { grid-column: span 12; }
+  .card.span-12 .card-media { aspect-ratio: 21 / 8; }
+  .card.span-7 .card-media { aspect-ratio: 16 / 11; }
+  .card.span-6 .card-media { aspect-ratio: 16 / 9; }
+  .card.span-5 .card-media { aspect-ratio: 16 / 15.4; }
+  .card.span-8 .card-media { aspect-ratio: 16 / 9; }
+  .card.span-4 .card-media { aspect-ratio: 4 / 5; }
+
+  /* "Minor" cards — smaller, less prominent. Used for footnote-tier projects */
+  .card.minor .card-media { aspect-ratio: 16 / 10; }
+  .card.minor .card-title { font-size: clamp(20px, 2.2vw, 26px); }
+  .card.minor .card-blurb { font-size: 14px; }
+  /* Pair fills the row evenly: 6 + 6 */
+  .card.minor[data-project="fivetwo"] { grid-column: span 6; }
+  .card.minor[data-project="photo"] { grid-column: span 6; }
+
+  /* Custom illustrative placeholders per project */
+  .ph-water {
+    background:
+      radial-gradient(120% 80% at 50% 110%, oklch(0.7 0.10 220) 0%, oklch(0.55 0.12 230) 60%, oklch(0.42 0.10 240) 100%);
+  }
+  .ph-water::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(180deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 16px);
+    mix-blend-mode: overlay;
+  }
+  .ph-rubric {
+    background:
+      linear-gradient(180deg, oklch(0.96 0.01 220) 0%, oklch(0.92 0.02 220) 100%);
+  }
+  .ph-rubric::after {
+    content: "";
+    position: absolute; inset: 24px;
+    background-image:
+      linear-gradient(0deg, var(--rule) 1px, transparent 1px),
+      linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+    background-size: 28px 28px;
+    border-radius: 8px;
+    border: 1px solid var(--rule);
+  }
+  .ph-record {
+    background: oklch(0.96 0.01 80);
+  }
+  .ph-record::before {
+    content: "";
+    position: absolute; left: 8%; right: 8%; top: 14%; bottom: 14%;
+    background:
+      linear-gradient(180deg, var(--ink) 0 28px, transparent 28px),
+      repeating-linear-gradient(180deg, transparent 0 36px, var(--rule) 36px 37px);
+    border-radius: 6px;
+    box-shadow: 0 14px 40px -20px rgba(0,0,0,0.25);
+    border: 1px solid var(--rule);
+  }
+  .ph-photo {
+    background: oklch(0.32 0.03 220);
+  }
+  .ph-photo::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 40% at 30% 60%, oklch(0.6 0.06 80) 0%, transparent 70%),
+      radial-gradient(40% 30% at 70% 30%, oklch(0.55 0.08 200) 0%, transparent 70%);
+    opacity: 0.7;
+  }
+  .ph-video {
+    background: oklch(0.22 0.03 60);
+  }
+  .ph-video::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(90deg, transparent 0 calc(50% - 1px), oklch(0.96 0.01 80) calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px));
+  }
+  .ph-video::after {
+    content: "▶";
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: oklch(0.96 0.01 80);
+    font-size: 32px;
+  }
+  .ph-merch {
+    background: oklch(0.94 0.01 60);
+  }
+  .ph-merch::before {
+    content: "";
+    position: absolute; left: 50%; top: 50%; width: 60%; height: 60%;
+    transform: translate(-50%, -50%);
+    background: var(--ink);
+    border-radius: 12px;
+    -webkit-mask: radial-gradient(ellipse 14% 50% at 0% 50%, transparent 99%, black) left/50% 100% no-repeat,
+                  radial-gradient(ellipse 14% 50% at 100% 50%, transparent 99%, black) right/50% 100% no-repeat;
+            mask: radial-gradient(ellipse 14% 50% at 0% 50%, transparent 99%, black) left/50% 100% no-repeat,
+                  radial-gradient(ellipse 14% 50% at 100% 50%, transparent 99%, black) right/50% 100% no-repeat;
+  }
+  .ph-aquatics-site {
+    background:
+      linear-gradient(180deg, oklch(0.55 0.12 230) 0%, oklch(0.42 0.10 240) 100%);
+  }
+  .ph-aquatics-site::before {
+    content: "";
+    position: absolute; left: 12%; right: 12%; top: 16%; bottom: 16%;
+    background: var(--bg);
+    border-radius: 8px;
+    box-shadow: 0 24px 60px -20px rgba(0,0,0,0.4);
+  }
+  .ph-aquatics-site::after {
+    content: "";
+    position: absolute; left: 14%; right: 14%; top: 18%; height: 14%;
+    background: oklch(0.55 0.12 230);
+    border-radius: 6px 6px 0 0;
+  }
+  .ph-kass {
+    background: oklch(0.18 0.02 220);
+    color: oklch(0.95 0.02 60);
+  }
+  .ph-kass::before {
+    content: "KASS";
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(60px, 12vw, 160px);
+    color: oklch(0.95 0.02 60);
+    letter-spacing: -0.02em;
+  }
+  .ph-kass::after {
+    content: "";
+    position: absolute; left: 0; right: 0; bottom: 0; height: 18%;
+    background: linear-gradient(180deg, transparent, oklch(0.18 0.02 220));
+  }
+
+  /* ---------- Modal ---------- */
+  .modal-scrim {
+    position: fixed; inset: 0;
+    background: color-mix(in oklab, var(--ink) 60%, transparent);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    display: none;
+    align-items: flex-start; justify-content: center;
+    padding: 48px 24px;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity .25s;
+  }
+  .modal-scrim.open { display: flex; opacity: 1; }
+  .modal {
+    background: var(--bg);
+    width: min(960px, 100%);
+    border-radius: 24px;
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    box-shadow: 0 40px 100px -20px rgba(0,0,0,0.4);
+    transform: translateY(12px);
+    transition: transform .3s;
+  }
+  .modal-scrim.open .modal { transform: translateY(0); }
+  .modal-hero {
+    aspect-ratio: 16 / 8;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg-2);
+  }
+  .modal-hero img.cover {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .modal-hero img.contain {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: contain;
+    padding: 4%;
+  }
+  .modal-hero a.hero-link {
+    position: absolute; inset: 0;
+    display: block;
+    cursor: zoom-in;
+  }
+  .modal-hero a.hero-link::after {
+    content: "Visit site ↗";
+    position: absolute;
+    right: 14px; bottom: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(20, 20, 24, 0.78);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 180ms ease, transform 180ms ease;
+    pointer-events: none;
+  }
+  .modal-hero:hover a.hero-link::after { opacity: 1; transform: translateY(0); }
+  .modal-gallery {
+    margin-top: 32px;
+    column-count: 2;
+    column-gap: 16px;
+  }
+  .modal-gallery .g {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg-2);
+    border: 1px solid var(--rule);
+    display: block;
+  }
+  .modal-gallery .g img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .modal-gallery .g.contain { padding: 8%; }
+  .modal-gallery .g .g-caption {
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .modal-gallery .g.wide {
+    column-span: all;
+  }
+  @media (max-width: 540px) {
+    .modal-gallery { column-count: 1; }
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--bg); border: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: background .15s, color .15s;
+  }
+  .modal-close:hover { background: var(--ink); color: var(--bg); }
+  .modal-body { padding: 40px 48px 48px; }
+  .modal-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    margin-bottom: 16px;
+    display: flex; gap: 16px;
+  }
+  .modal h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(40px, 5vw, 60px);
+    line-height: 1;
+    letter-spacing: -0.015em;
+    margin: 0 0 24px;
+  }
+  .modal h3 em { font-style: italic; color: var(--accent); }
+  .modal-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    margin-top: 16px;
+  }
+  .modal-desc { font-size: 16px; line-height: 1.6; color: var(--ink-soft); }
+  .modal-desc p { margin: 0 0 12px; }
+  .modal-meta dl {
+    margin: 0;
+    display: grid; gap: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .modal-meta dt { color: var(--ink-mute); margin-bottom: 4px; }
+  .modal-meta dd { margin: 0; color: var(--ink); font-family: var(--sans); font-size: 14px; text-transform: none; letter-spacing: 0; }
+  .modal-cta {
+    margin-top: 32px;
+    display: flex; gap: 12px; flex-wrap: wrap;
+  }
+  .btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    padding: 12px 20px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--bg);
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background .15s, color .15s;
+  }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .btn:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .gated-note {
+    margin-top: 16px;
+    background: var(--bg-2);
+    border: 1px dashed var(--rule);
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .gated-note svg { flex: 0 0 auto; margin-top: 2px; color: var(--accent); }
+
+  /* ---------- Contact ---------- */
+  .contact {
+    border-top: 1px solid var(--rule);
+    background: var(--ink);
+    color: var(--bg);
+    margin-top: 32px;
+  }
+  .contact-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 96px 32px 64px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+  .contact h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(56px, 9vw, 120px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .contact h2 em { font-style: italic; color: var(--accent); }
+  .contact a.email-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(28px, 4vw, 44px);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in oklab, var(--bg) 50%, transparent);
+    padding-bottom: 4px;
+    transition: color .2s, border-color .2s;
+  }
+  .contact a.email-link:hover { color: var(--accent); border-color: var(--accent); }
+  .contact-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: color-mix(in oklab, var(--bg) 60%, transparent);
+    display: grid; gap: 18px;
+  }
+  .contact-meta a {
+    color: var(--bg);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in oklab, var(--bg) 30%, transparent);
+    padding-bottom: 2px;
+  }
+  .contact-meta a:hover { color: var(--accent); border-color: var(--accent); }
+  .footer {
+    border-top: 1px solid color-mix(in oklab, var(--bg) 14%, transparent);
+    padding: 24px 32px;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex; justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: color-mix(in oklab, var(--bg) 50%, transparent);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "title"
+        "sketch"
+        "meta";
+      row-gap: 36px;
+      padding-top: 56px; padding-bottom: 56px;
+    }
+    .hero-title { font-size: clamp(56px, 14vw, 84px); }
+    .hero-sketch { justify-self: center; max-width: 180px; }
+    .hero-meta { grid-template-columns: 1fr; row-gap: 18px; padding-top: 24px; }
+    .about { grid-template-columns: 1fr; gap: 24px; padding: 48px 24px 64px; }
+    .work { padding-left: 24px; padding-right: 24px; }
+    .nav-inner, .section-head, .contact-inner, .footer { padding-left: 24px; padding-right: 24px; }
+    .card, .card.span-7, .card.span-5, .card.span-8, .card.span-4, .card.span-12,
+    .card.minor[data-project="fivetwo"], .card.minor[data-project="photo"] { grid-column: span 12; }
+    .nav-links { display: none; }
+    .modal-body { padding: 28px 24px 36px; }
+    .modal-grid { grid-template-columns: 1fr; gap: 28px; }
+    .contact-inner { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="mark" href="#top">
+      <img class="mark-portrait" src="media/profile.png" alt="Daniel Ha" />
+      <span class="mark-text"><strong>Daniel Ha</strong><span class="mark-sub">Portfolio · 2026</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#personal">Personal</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="#contact">Get in touch ↗</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero-mark"></div>
+
+  <h1 class="hero-title">
+    Educator &amp;<br/>creative<br/><em>designer</em>.
+  </h1>
+
+  <figure class="hero-sketch">
+    <img src="media/art-5.jpg" alt="Ballpoint pen sketch of a cat" />
+    <figcaption>Sticky note · ballpoint pen</figcaption>
+  </figure>
+
+  <dl class="hero-meta">
+    <div>
+      <dt>Currently</dt>
+      <dd>Aquatics Instructor &amp; Department Tech Lead, Chadwick International</dd>
+    </div>
+    <div>
+      <dt>Applying for</dt>
+      <dd><em>MS Design Teacher</em> · Chadwick International</dd>
+    </div>
+    <div>
+      <dt>Toolkit</dt>
+      <dd>Adobe Creative Suite · Final Cut Pro · Apps Script · HTML / CSS / JS</dd>
+    </div>
+  </dl>
+</header>
+
+<!-- ============ ABOUT (removed) ============ -->
+
+<!-- ============ WORK ============ -->
+<div class="section-head" id="work">
+  <h2>Selected <em>work</em></h2>
+  <span class="count">Key projects · 2014 — 2026</span>
+</div>
+
+<section class="work">
+  <!-- KASS Series Website (featured large) -->
+  <button class="card span-12" data-project="kass">
+    <div class="card-media">
+      <img class="cover" src="media/kass-site.png" alt="KASS Series website hero" loading="lazy" />
+      <span class="badge">Featured · Web</span>
+      <span class="open" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </span>
+    </div>
+    <div class="card-meta">
+      <span>Web Design</span>
+      <span>2026</span>
+    </div>
+    <h3 class="card-title">KASS Series — a swim invitational, branded.</h3>
+    <p class="card-blurb">Site for the KAIAC Age-Group Swim Series; full identity, typography, and information architecture.</p>
+  </button>
+
+  <!-- Chadwick Aquatics website -->
+  <button class="card span-7" data-project="aquatics-site">
+    <div class="card-media">
+      <img class="cover" src="media/aquatics-site.png" alt="Chadwick Aquatics website" loading="lazy" />
+      <span class="badge">Web</span>
+      <span class="open" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </span>
+    </div>
+    <div class="card-meta">
+      <span>Program Site</span>
+      <span>2025 — 26</span>
+    </div>
+    <h3 class="card-title">Chadwick Aquatics</h3>
+    <p class="card-blurb">Public-facing program site — schedules, athlete bios, registration flows, and a refreshed visual system.</p>
+  </button>
+
+  <!-- Banner / merch collection -->
+  <button class="card span-5" data-project="merch">
+    <div class="card-media merch-tile">
+      <div class="merch-cell"><img src="media/marks-1.png" alt="Chadwick Golfins crest" loading="lazy" /></div>
+      <div class="merch-cell fit"><img src="media/marks-2.png" alt="Chadwick Bangkok skyline" loading="lazy" /></div>
+      <div class="merch-cell"><img src="media/marks-3.png" alt="Varsity Swim painted detail" loading="lazy" /></div>
+      <div class="merch-cell"><img src="media/marks-4.png" alt="Asia Pacific Invitational mark" loading="lazy" /></div>
+      <span class="badge">Identity · Apparel</span>
+      <span class="open" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </span>
+    </div>
+    <div class="card-meta">
+      <span>Logo · T-shirt · Banner</span>
+      <span>2025 — 26</span>
+    </div>
+    <h3 class="card-title">Recent Marks &amp; Merch</h3>
+    <p class="card-blurb">Apparel, banners, and logo work from the 2025–26 season at Chadwick International.</p>
+  </button>
+
+  <!-- Aquatics Rubric app -->
+  <button class="card span-6" data-project="rubric">
+    <div class="card-media">
+      <img class="cover" src="media/rubric-app.png" alt="Aquatics Rubric web app" loading="lazy" />
+      <span class="badge locked">Internal · Chadwick</span>
+      <span class="open" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </span>
+    </div>
+    <div class="card-meta">
+      <span>Web App · Apps Script</span>
+      <span>2026</span>
+    </div>
+    <h3 class="card-title">Aquatics Rubric</h3>
+    <p class="card-blurb">A custom assessment tool I built end-to-end to automate skill rubrics for swim instruction across the department.</p>
+  </button>
+
+  <!-- School Record Board app -->
+  <button class="card span-6" data-project="record">
+    <div class="card-media">
+      <img class="cover" src="media/record-app.png" alt="School Record Board web app" loading="lazy" />
+      <span class="badge locked">Internal · Chadwick</span>
+      <span class="open" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </span>
+    </div>
+    <div class="card-meta">
+      <span>Web App · Apps Script</span>
+      <span>2026</span>
+    </div>
+    <h3 class="card-title">School Record Board</h3>
+    <p class="card-blurb">Record-board that pulls from team data — replaces a spreadsheet workflow with a live web UI.</p>
+  </button>
+
+  <!-- FiveTwo video -->
+  <button class="card span-4 minor" data-project="fivetwo">
+    <div class="card-media" style="background:#ffffff;">
+      <img class="contain" src="media/fivetwo-v2.png" alt="GrassRoot — grow your giving" loading="lazy" style="object-fit:contain; padding:8%;" />
+      <span class="badge">Video · Promotional</span>
+      <span class="open" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </span>
+    </div>
+    <div class="card-meta">
+      <span>Final Cut Pro</span>
+      <span>2014</span>
+    </div>
+    <h3 class="card-title">FiveTwo — promotional film.</h3>
+    <p class="card-blurb">A short promotional piece for the FiveTwo nonprofit, edited in Final Cut Pro.</p>
+  </button>
+
+  <!-- YIS Photography -->
+  <button class="card span-4 minor" data-project="photo">
+    <div class="card-media">
+      <img class="cover" src="media/yiss-campus.webp" alt="YIS Seoul campus" loading="lazy" />
+      <span class="badge">Photography</span>
+      <span class="open" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </span>
+    </div>
+    <div class="card-meta">
+      <span>School Campus</span>
+      <span>2017</span>
+    </div>
+    <h3 class="card-title">YISS, photographed.</h3>
+    <p class="card-blurb">Campus photography for Yongsan International School of Seoul, still in use on their Campus page.</p>
+  </button>
+</section>
+
+<!-- ============ PERSONAL ============ -->
+<div class="section-head" id="personal">
+  <h2>Off the <em>clock.</em></h2>
+  <span class="count">Analog photography · Personal art</span>
+</div>
+
+<section class="work personal">
+
+  <!-- Analog photography -->
+  <button class="card span-7" data-project="film">
+    <div class="card-media art-tile">
+      <div class="art-cell"><img src="media/notes-1.png" alt="Piano with autumn leaves" loading="lazy" /></div>
+      <div class="art-cell"><img src="media/notes-2.png" alt="Reflections at dusk on the Charles" loading="lazy" /></div>
+      <div class="art-cell"><img src="media/notes-3.png" alt="Bridge over the Charles, Boston skyline" loading="lazy" /></div>
+      <div class="art-cell"><img src="media/notes-4.png" alt="Maple leaf on water" loading="lazy" /></div>
+      <span class="badge">35mm · Analog</span>
+      <span class="open" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </span>
+    </div>
+    <div class="card-meta">
+      <span>Nikon FM10 · Film</span>
+      <span>Boston</span>
+    </div>
+    <h3 class="card-title">Notes on light.</h3>
+    <p class="card-blurb">A long-running roll of 35mm film — reflections, fall colors, and quiet corners of the Charles.</p>
+  </button>
+
+  <!-- Personal art -->
+  <button class="card span-5" data-project="art">
+    <div class="card-media art-tile">
+      <div class="art-cell"><img src="media/art-2.jpg" alt="Paper cutout wave" loading="lazy" /></div>
+      <div class="art-cell"><img src="media/art-4.jpg" alt="Paper cutout iceberg" loading="lazy" /></div>
+      <div class="art-cell"><img src="media/art-5.jpg" alt="Ballpoint cat sketch" loading="lazy" /></div>
+      <div class="art-cell"><img src="media/art-1.jpg" alt="Oil paint study" loading="lazy" /></div>
+      <span class="badge">Paper · Paint · Pen</span>
+      <span class="open" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </span>
+    </div>
+    <div class="card-meta">
+      <span>Cutout · Oil · Ballpoint</span>
+      <span>Studies</span>
+    </div>
+    <h3 class="card-title">Hands-on.</h3>
+    <p class="card-blurb">Paper cutouts of water, an oil study, and small sticky-note sketches in ballpoint pen.</p>
+  </button>
+
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <h2>Let's <em>talk.</em></h2>
+      <a class="email-link" href="mailto:deeha6@gmail.com">deeha6@gmail.com</a>
+    </div>
+    <div class="contact-meta">
+      <div>
+        <div style="opacity:.6; margin-bottom:6px;">Location</div>
+        <div style="font-family:var(--sans); font-size:14px; text-transform:none; letter-spacing:0;">Seoul, South Korea · Chadwick International</div>
+      </div>
+      <div>
+        <div style="opacity:.6; margin-bottom:6px;">Resume</div>
+        <div style="font-family:var(--sans); font-size:14px; text-transform:none; letter-spacing:0;">
+          <a href="#" data-resume>Download CV (PDF) ↗</a>
+        </div>
+      </div>
+      <div>
+        <div style="opacity:.6; margin-bottom:6px;">Email</div>
+        <div style="font-family:var(--sans); font-size:14px; text-transform:none; letter-spacing:0;">
+          <a href="mailto:deeha6@gmail.com">deeha6@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>© 2026 Daniel Ha</span>
+  </div>
+</section>
+
+<!-- ============ MODAL ============ -->
+<div class="modal-scrim" id="modal-scrim" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal" id="modal">
+    <div class="modal-hero" id="modal-hero">
+      <button class="modal-close" id="modal-close" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-eyebrow" id="modal-eyebrow"></div>
+      <h3 id="modal-title"></h3>
+      <div class="modal-grid">
+        <div class="modal-desc" id="modal-desc"></div>
+        <div class="modal-meta">
+          <dl id="modal-meta-list"></dl>
+          <div class="modal-cta" id="modal-cta"></div>
+          <div id="modal-gated"></div>
+        </div>
+      </div>
+      <div class="modal-gallery" id="modal-gallery"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const PROJECTS = {
+    "kass": {
+      title: "KASS Series",
+      titleAccent: "an invitational, branded.",
+      eyebrow: ["Web Design", "Identity", "2026"],
+      heroImg: "media/kass-site.png",
+      heroFit: "cover",
+      desc: [
+        "An end-to-end design and build for the KASS Series — a KAIAC Age-group Swim Series invitational."
+      ],
+      gallery: [
+        { src: "media/kass-site.png", span: "wide" },
+        { src: "media/kass1-banner-1.png", span: "wide" },
+        { src: "media/kass1-banner-2.png", span: "wide" },
+        { src: "media/kass4-bloom-1.png", span: "wide" },
+        { src: "media/kass4-bloom-2.png", span: "wide" }
+      ],
+      meta: { "Role": "Design + Build", "Year": "2026" },
+      links: [{label: "Visit site ↗", url: "https://sd-aquatics.wixsite.com/kass", primary: true}]
+    },
+    "aquatics-site": {
+      title: "Chadwick Aquatics",
+      titleAccent: "the program, online.",
+      eyebrow: ["Web", "Program Identity", "2025 — 26"],
+      heroImg: "media/aquatics-site.png",
+      heroFit: "cover",
+      desc: [
+        "The public-facing site for Chadwick International's Aquatics program. Designed and built it to centralize schedules and registration."
+      ],
+      meta: { "Role": "Design + Build", "Year": "2025 — 2026" },
+      links: [{label: "Visit site ↗", url: "https://www.chadwickaquatics.org/", primary: true}]
+    },
+    "merch": {
+      title: "Recent Marks & Merch",
+      titleAccent: "a selection of recent work.",
+      eyebrow: ["Apparel, Logo, & Banners", "2025 — 26"],
+      heroImg: "media/merch-hero.png",
+      heroFit: "contain",
+      desc: [
+        "A selection of logos, t-shirts, meet banners, and team apparel work from the 2025–26 season at Chadwick International."
+      ],
+      gallery: [
+        { src: "media/banner-3.png", span: "wide" },
+        { src: "media/banner-4.png", span: "wide" },
+        { src: "media/banner-5.png", span: "wide" },
+        { src: "media/banner-6.png", span: "wide" },
+        { src: "media/kass1-banner-1.png", span: "wide" },
+        { src: "media/kass1-banner-2.png", span: "wide" },
+        { src: "media/kass4-bloom-1.png", span: "wide" },
+        { src: "media/kass4-bloom-2.png", span: "wide" },
+        { src: "media/chadwick-soccer.png", span: "tall" },
+        { src: "media/tshirt-1.png" },
+        { src: "media/tshirt-2.png" },
+        { src: "media/tshirt-3.png" },
+        { src: "media/tshirt-4.png" },
+        { src: "media/tshirt-5.png" }
+      ],
+      meta: { "Role": "Designer", "Year": "2025 — 26", "Stack": "Adobe Illustrator · Photoshop" },
+      links: []
+    },
+    "rubric": {
+      title: "Aquatics Rubric",
+      titleAccent: "grading, automated.",
+      eyebrow: ["Web App", "Apps Script", "2026"],
+      heroImg: "media/rubric-app.png",
+      heroFit: "cover",
+      desc: [
+        "Designed and engineered a custom assessment web app to replace a paper-and-spreadsheet workflow for the Aquatics department. Instructors mark skills against a rubric on any device; results sync to a Google Sheet and feed downstream reporting."
+      ],
+      gallery: [
+        { src: "media/rubric-before.png", caption: "Before — paper rubric." },
+        { src: "media/rubric-app.png", caption: "After — the web app." }
+      ],
+      meta: { "Role": "Design + Engineering", "Year": "2026" },
+      links: [{label: "Open app ↗", url: "https://script.google.com/a/macros/chadwickschool.org/s/AKfycbyU68n4bJJqTp4bDsIShGSG1w3H6AZQ5UA-lD4hTEFbgtgGXa1SWJCK-sVeSBX6kx76/exec", primary: true}],
+      gated: "This is an internal tool — access requires a Chadwick (chadwickschool.org) Google account. Happy to walk through it live."
+    },
+    "record": {
+      title: "School Record Board",
+      titleAccent: "a spreadsheet, made alive.",
+      eyebrow: ["Web App", "Apps Script", "2026"],
+      heroImg: "media/record-app.png",
+      heroFit: "cover",
+      desc: [
+        "A live record board for Chadwick swim records. It replaces a manually-maintained spreadsheet with a sortable, filterable web UI, so coaches and athletes always see the current state."
+      ],
+      meta: { "Role": "Design + Engineering", "Year": "2026" },
+      links: [{label: "Open app ↗", url: "https://script.google.com/a/macros/chadwickschool.org/s/AKfycbxKuXTdacmod3va6NU7Gp0IuN3kIqMmsx7xrNkxKNi9V9VkypL3OzwbX3QzjTDp2-BvSw/exec", primary: true}],
+      gated: "This is an internal tool — access requires a Chadwick (chadwickschool.org) Google account. Happy to walk through it live."
+    },
+    "fivetwo": {
+      title: "FiveTwo — promotional film",
+      titleAccent: "",
+      eyebrow: ["Video", "Direction", "Freelance"],
+      heroImg: "media/fivetwo-v2.png",
+      heroFit: "contain",
+      desc: [
+        "A promotional film for the FiveTwo nonprofit. Edit done in Final Cut Pro.",
+        "The piece needed to communicate the organization's mission quickly and emotively for use across web and social channels."
+      ],
+      meta: { "Role": "Editor / Direction", "Stack": "Final Cut Pro", "Client": "FiveTwo", "Output": "Web film" },
+      links: [{label: "Visit FiveTwo ↗", url: "https://www.fivetwo.org/", primary: true}]
+    },
+    "photo": {
+      title: "YISS Campus, photographed",
+      titleAccent: "campus, in light.",
+      eyebrow: ["Photography", "Campus", "2017"],
+      heroImg: "media/yiss-campus.webp",
+      heroFit: "cover",
+      desc: [
+        "Campus photography commissioned for Yongsan International School of Seoul.",
+        "Selected work continues to live on the school's Campus page nine years later."
+      ],
+      meta: { "Role": "Photographer", "Year": "2017", "Stack": "Adobe Lightroom · Photoshop", "Output": "Campus imagery, About page" },
+      links: [{label: "View on YIS site ↗", url: "https://www.yisseoul.org/about/campus", primary: true}]
+    },
+    "film": {
+      title: "Notes on light",
+      titleAccent: "a long roll of 35mm film.",
+      eyebrow: ["Analog", "35mm", "Boston — Cambridge"],
+      heroImg: "media/film-2.jpg",
+      heroFit: "cover",
+      desc: [
+        "A personal project shot on a Nikon FM10. Quiet moments around the city. Shooting film keeps me honest: a single frame, no second take."
+      ],
+      gallery: [
+        { src: "media/film-1.jpg" },
+        { src: "media/film-2.jpg" },
+        { src: "media/film-3.jpg", span: "wide" },
+        { src: "media/film-4.jpg" },
+        { src: "media/film-5.jpg", span: "tall" },
+        { src: "media/film-6.jpg" },
+        { src: "media/film-7.jpg" },
+        { src: "media/film-8.jpg", span: "wide" },
+        { src: "media/film-9.jpg" },
+        { src: "media/film-10.jpg" },
+        { src: "media/film-11.jpg", span: "tall" },
+        { src: "media/film-12.jpg" },
+        { src: "media/film-13.jpg", span: "wide" }
+      ],
+      meta: { "Camera": "Nikon FM10", "Format": "35mm color + B&W" },
+      links: []
+    },
+    "art": {
+      title: "Hands-on",
+      titleAccent: "paper, paint, ballpoint pen.",
+      eyebrow: ["Personal", "Cutout · Oil · Pen", "Studies"],
+      heroImg: "media/art-2.jpg",
+      heroFit: "contain",
+      desc: [
+        "A small set of personal pieces — paper cutouts of waves and icebergs, an oil-paint study of a single water droplet across color fields, and ballpoint-pen sketches on a sticky note."
+      ],
+      gallery: [
+        { src: "media/art-1.jpg", span: "wide" },
+        { src: "media/art-2.jpg", span: "wide" },
+        { src: "media/art-3.jpg" },
+        { src: "media/art-4.jpg", span: "tall" },
+        { src: "media/art-5.jpg" },
+        { src: "media/art-6.jpg" }
+      ],
+      meta: { "Media": "Paper cutout, oil paint, ballpoint pen", "Surface": "Canvas · Paper · Sticky note" },
+      links: []
+    }
+  };
+
+  const scrim = document.getElementById('modal-scrim');
+  const modalHero = document.getElementById('modal-hero');
+  const modalEyebrow = document.getElementById('modal-eyebrow');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDesc = document.getElementById('modal-desc');
+  const modalMeta = document.getElementById('modal-meta-list');
+  const modalCta = document.getElementById('modal-cta');
+  const modalGated = document.getElementById('modal-gated');
+  const closeBtn = document.getElementById('modal-close');
+
+  const modalGallery = document.getElementById('modal-gallery');
+
+  function openProject(key) {
+    const p = PROJECTS[key];
+    if (!p) return;
+
+    // Clear previous hero
+    modalHero.querySelectorAll('.placeholder, img, a.hero-link').forEach(el => el.remove());
+    if (p.heroImg) {
+      const img = document.createElement('img');
+      img.src = p.heroImg;
+      img.className = p.heroFit === 'contain' ? 'contain' : 'cover';
+      img.alt = p.title;
+      const primary = (p.links || []).find(l => l.primary && l.url);
+      if (primary) {
+        const a = document.createElement('a');
+        a.href = primary.url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.className = 'hero-link';
+        a.title = primary.label || ('Open ' + primary.url);
+        a.appendChild(img);
+        modalHero.prepend(a);
+      } else {
+        modalHero.prepend(img);
+      }
+    } else if (p.hero) {
+      const ph = document.createElement('div');
+      ph.className = 'placeholder ' + p.hero;
+      ph.style.position = 'absolute';
+      ph.style.inset = '0';
+      modalHero.prepend(ph);
+    }
+
+    // Render gallery
+    if (p.gallery && p.gallery.length) {
+      modalGallery.innerHTML = p.gallery.map(g =>
+        `<div class="g ${g.span || ''} ${g.fit === 'contain' ? 'contain' : ''}">
+           <img src="${g.src}" alt="" loading="lazy" />
+           ${g.caption ? `<figcaption class="g-caption">${g.caption}</figcaption>` : ''}
+         </div>`
+      ).join('');
+      modalGallery.style.display = '';
+    } else {
+      modalGallery.innerHTML = '';
+      modalGallery.style.display = 'none';
+    }
+
+    modalEyebrow.innerHTML = p.eyebrow.map(s => `<span>${s}</span>`).join('');
+    modalTitle.innerHTML = `${p.title} <em>— ${p.titleAccent}</em>`;
+    modalDesc.innerHTML = p.desc.map(d => `<p>${d}</p>`).join('');
+
+    modalMeta.innerHTML = Object.entries(p.meta).map(([k,v]) => `
+      <div><dt>${k}</dt><dd>${v}</dd></div>
+    `).join('');
+
+    modalCta.innerHTML = (p.links || []).map(l =>
+      `<a class="btn ${l.primary ? '' : 'ghost'}" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`
+    ).join('');
+
+    if (p.gated) {
+      modalGated.innerHTML = `
+        <div class="gated-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 1 1 8 0v4"/></svg>
+          <span>${p.gated}</span>
+        </div>`;
+    } else {
+      modalGated.innerHTML = '';
+    }
+
+    scrim.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeProject() {
+    scrim.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-project]').forEach(b => {
+    b.addEventListener('click', () => openProject(b.dataset.project));
+  });
+  closeBtn.addEventListener('click', closeProject);
+  scrim.addEventListener('click', (e) => { if (e.target === scrim) closeProject(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeProject(); });
+</script>
+
+</body>
+</html>
